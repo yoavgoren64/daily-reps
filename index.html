@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0f1115" />
+  <meta name="apple-mobile-web-app-title" content="Daily Reps" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <title>Daily Reps</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Each "view" is a screen. app.js shows one at a time. -->
+    <main id="view-today" class="view"></main>
+    <main id="view-strength" class="view hidden"></main>
+    <main id="view-custom" class="view hidden"></main>
+    <main id="view-history" class="view hidden"></main>
+    <main id="view-settings" class="view hidden"></main>
+    <main id="view-player" class="view hidden"></main>
+    <main id="view-finish" class="view hidden"></main>
+
+    <nav id="tabbar">
+      <button data-tab="today" class="active"><span>🔥</span>Today</button>
+      <button data-tab="history"><span>📈</span>Progress</button>
+      <button data-tab="settings"><span>⚙️</span>Settings</button>
+    </nav>
+  </div>
+
+  <!-- Bottom sheet that shows how to do an exercise -->
+  <div id="sheet" class="sheet hidden">
+    <div class="sheet-card">
+      <div id="sheet-figure"></div>
+      <h3 id="sheet-title"></h3>
+      <p id="sheet-body"></p>
+      <button class="btn secondary" id="sheet-close">Got it</button>
+    </div>
+  </div>
+
+  <script src="exercises.js"></script>
+  <script src="animations.js"></script>
+  <script src="figures.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Offline support (only works when the app is served from a web address, not a local file)
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+</body>
+</html>
